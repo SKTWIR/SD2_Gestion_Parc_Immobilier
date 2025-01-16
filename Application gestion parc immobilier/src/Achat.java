@@ -1,5 +1,5 @@
 import java.util.Date;
-//class Achat permettant d'historiser les différentes transcation qui ont eu lieu
+//C
 public class Achat {
 	
 	//déclarations des variables pour la classe Achat qui permet l'achat de bien immobilier

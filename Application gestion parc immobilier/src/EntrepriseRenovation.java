@@ -7,4 +7,6 @@ public class EntrepriseRenovation {
 	String nomEntreprise;
 	String adresseEntreprise;
 	
+	//ajoutez la lecture d'un CSV pour gérer les fichiers peut etre ?
+		
 }
