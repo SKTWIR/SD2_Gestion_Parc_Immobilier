@@ -4,4 +4,11 @@ public class Visiteur extends Utilisateur {
 	String nom;
 	String prenom;
 	String email;
+	
+	public Visiteur() {
+		this.idVisiteur = idUtilisateur;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+	}
 }
