@@ -1,4 +1,4 @@
-
+//classe mère qui sert de base aux 3 différents rôles utiliser dans l'application
 public class Utilisateur {
 	// déclarations des variable nécessaire à l'identification d'un utilisateurs
 	String idUtilisateur;
