@@ -1,5 +1,5 @@
 import java.util.Date;
-//C
+//Class historisant les achats de bien
 public class Achat {
 	
 	//déclarations des variables pour la classe Achat qui permet l'achat de bien immobilier

@@ -13,5 +13,18 @@ public class BienImmobilier {
 	Date dateAjout;
 	
 	
+	public BienImmobilier() {
+		this.idBien = idBien;
+        this.adresse = adresse;
+        this.arrondissement = arrondissement;
+        this.prix = prix;
+        this.type = type;
+        this.etat = etat;
+        this.surface = surface;
+        this.dateAjout = dateAjout;
+	}
+	
+	
+	
 	//ajouter une méthode ajout des biens ? toujours avec le truc des CSV ? 
 }
