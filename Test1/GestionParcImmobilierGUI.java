@@ -37,6 +37,7 @@ public class GestionParcImmobilierGUI {
         proprietairesButton.addActionListener(e -> new ListeProprietairesGUI().display());
         clientsButton.addActionListener(e -> new ListeClientsGUI().display());
         biensButton.addActionListener(e -> new ListeBiensGUI().display());
+        transactionsButton.addActionListener(e -> new ListeTransactionsGUI().display());
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(15, 0, 15, 0);
@@ -55,8 +56,9 @@ public class GestionParcImmobilierGUI {
 
         frame.add(panel);
         frame.setVisible(true);
-    }
+	}
 }
+
 
 class ListeProprietairesGUI {
     public void display() {
@@ -587,6 +589,7 @@ class FormulaireAjoutBiens {
         }
         return codes.toArray(new String[0]);
     }
+}
     
 class ListeTransactionsGUI {
     	private DefaultTableModel model;
@@ -699,10 +702,10 @@ class ListeTransactionsGUI {
         }
     }
 
-    class FormulaireAjoutBiens {
+	class FormulaireAjoutTransactions {
         private DefaultTableModel model;
 
-        public FormulaireAjoutBiens(DefaultTableModel tableModel) {
+        public FormulaireAjoutTransactions(DefaultTableModel tableModel) {
             this.model = tableModel;
         }
 
@@ -718,13 +721,13 @@ class ListeTransactionsGUI {
             String[] types = {"Location", "Vente"};
             JComboBox<String> typeComboBox = new JComboBox<>(types);
 
-            String[] types = {"Validée", "En attente"};
-            JComboBox<String> statusComboBox = new JComboBox<>(types);
+            String[] status = {"Validée", "En attente"};
+            JComboBox<String> statusComboBox = new JComboBox<>(status);
 
             // Liste déroulante pour le Code Propriétaire
             JComboBox<String> codeProprietaireComboBox = new JComboBox<>(loadProprietaireCodes("proprietaires.csv"));
             JComboBox<String> codeClientComboBox = new JComboBox<>(loadClientCodes("clients.csv"));
-    	JComboBox<String> codeBiensComboBox = new JComboBox<>(loadBiensCodes("biens.csv"));
+            JComboBox<String> codeBiensComboBox = new JComboBox<>(loadBiensCodes("biens.csv"));
 
             // Champs formatés pour les nombres
             NumberFormatter numberFormatter = new NumberFormatter(NumberFormat.getIntegerInstance());
@@ -748,16 +751,16 @@ class ListeTransactionsGUI {
             panel.add(codeClientComboBox);
             panel.add(new JLabel("Code Bien:"));
             panel.add(codeBiensComboBox);
-    	panel.add(new JLabel("Frais:"));
+            panel.add(new JLabel("Frais:"));
             panel.add(fraisField);
 
             // Bouton d'enregistrement avec mise à jour immédiate du tableau
             JButton enregistrerButton = new JButton("Enregistrer");
             enregistrerButton.addActionListener(e -> {
                 try {
-                    String codeBiens = ListeBiensGUI.generateUniqueCode("biens.csv");
+                    String codeTransactions = ListeBiensGUI.generateUniqueCode("biens.csv");
                     String newEntry = String.format("%s,%s,%s,%s,%s,%s,%s,%s",
-                            codeTransaction,
+                            codeTransactions,
                             typeComboBox.getSelectedItem().toString(),
                             dateField.getText(),
                             statusComboBox.getSelectedItem().toString(),
@@ -832,5 +835,7 @@ class ListeTransactionsGUI {
             }
             return codes.toArray(new String[0]);
         }
-    }    
+        
 }
+
+	

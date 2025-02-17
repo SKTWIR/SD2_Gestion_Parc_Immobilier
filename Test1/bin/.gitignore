@@ -1,8 +1,6 @@
-/.classpath
-/.project
-/GestionParcImmobilierGUI$1.class
-/GestionParcImmobilierGUI.class
-/ListeProprietairesGUI.class
-/biens.csv
-/clients.csv
-/proprietaires.csv
+/test.class
+/FormulaireAjoutBiens$FormulaireAjoutTransactions.class
+/FormulaireAjoutBiens$ListeTransactionsGUI$1.class
+/FormulaireAjoutTransactions.class
+/ListeTransactionsGUI$1.class
+/ListeTransactionsGUI.class
