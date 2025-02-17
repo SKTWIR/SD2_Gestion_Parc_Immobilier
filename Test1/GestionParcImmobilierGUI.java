@@ -150,22 +150,22 @@ class ListeProprietairesGUI {
     }
 
     public static String generateUniqueCode(String filePath) throws IOException {
-        Set<String> existingCodes = new HashSet<>();
+        Set<String> existingCodes1 = new HashSet<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",", -1);
                 if (values.length >= 1) {
-                    existingCodes.add(values[0].trim());
+                    existingCodes1.add(values[0].trim());
                 }
             }
         }
         Random random = new Random();
-        String code;
+        String code1;
         do {
-            code = String.valueOf(1001 + random.nextInt(9999));
-        } while (existingCodes.contains(code));
-        return code;
+            code1 = String.valueOf(1001 + random.nextInt(9999));
+        } while (existingCodes1.contains(code1));
+        return code1;
     }
 }
 
@@ -303,22 +303,22 @@ class ListeClientsGUI {
     }
 
     public static String generateUniqueCode(String filePath) throws IOException {
-        Set<String> existingCodes = new HashSet<>();
+        Set<String> existingCodes2 = new HashSet<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",", -1);
                 if (values.length >= 1) {
-                    existingCodes.add(values[0].trim());
+                    existingCodes2.add(values[0].trim());
                 }
             }
         }
         Random random = new Random();
-        String code;
+        String code2;
         do {
-            code = String.valueOf(10001 + random.nextInt(89999));
-        } while (existingCodes.contains(code));
-        return code;
+            code2 = String.valueOf(10001 + random.nextInt(89999));
+        } while (existingCodes2.contains(code2));
+        return code2;
     }
 }
 
@@ -459,22 +459,22 @@ class ListeBiensGUI {
     }
 
     public static String generateUniqueCode(String filePath) throws IOException {
-        Set<String> existingCodes = new HashSet<>();
+        Set<String> existingCodes3 = new HashSet<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",", -1);
                 if (values.length >= 1) {
-                    existingCodes.add(values[0].trim());
+                    existingCodes3.add(values[0].trim());
                 }
             }
         }
         Random random = new Random();
-        String code;
+        String code3;
         do {
-            code = String.valueOf(100001 + random.nextInt(899999));
-        } while (existingCodes.contains(code));
-        return code;
+            code3 = String.valueOf(100001 + random.nextInt(899999));
+        } while (existingCodes3.contains(code3));
+        return code3;
     }
 }
 
@@ -683,22 +683,22 @@ class ListeTransactionsGUI {
         }
 
         public static String generateUniqueCode(String filePath) throws IOException {
-            Set<String> existingCodes = new HashSet<>();
+            Set<String> existingCodes4 = new HashSet<>();
             try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
                 String line;
                 while ((line = br.readLine()) != null) {
                     String[] values = line.split(",", -1);
                     if (values.length >= 1) {
-                        existingCodes.add(values[0].trim());
+                        existingCodes4.add(values[0].trim());
                     }
                 }
             }
             Random random = new Random();
-            String code;
+            String code4;
             do {
-                code = String.valueOf(1000001 + random.nextInt(8999999));
-            } while (existingCodes.contains(code));
-            return code;
+                code4 = String.valueOf(1000001 + random.nextInt(8999999));
+            } while (existingCodes4.contains(code4));
+            return code4;
         }
     }
 
@@ -758,7 +758,7 @@ class ListeTransactionsGUI {
             JButton enregistrerButton = new JButton("Enregistrer");
             enregistrerButton.addActionListener(e -> {
                 try {
-                    String codeTransactions = ListeBiensGUI.generateUniqueCode("biens.csv");
+                    String codeTransactions = ListeTransactionsGUI.generateUniqueCode("transactions.csv");
                     String newEntry = String.format("%s,%s,%s,%s,%s,%s,%s,%s",
                             codeTransactions,
                             typeComboBox.getSelectedItem().toString(),
@@ -766,8 +766,8 @@ class ListeTransactionsGUI {
                             statusComboBox.getSelectedItem().toString(),
                             codeProprietaireComboBox.getSelectedItem().toString(),
                             codeClientComboBox.getSelectedItem().toString(),
-    			codeBiensComboBox.getSelectedItem().toString(),
-    			fraisField.getText());
+                            codeBiensComboBox.getSelectedItem().toString(),
+                            fraisField.getText());
 
                     // Écrire dans le fichier CSV
                     try (FileWriter writer = new FileWriter("transactions.csv", true)) {
