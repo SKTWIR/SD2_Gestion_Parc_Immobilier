@@ -4,8 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GestionParcImmobilierGUI {
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Gestion de parc immobilier");
+    private JFrame frame;
+
+    // ✅ Ajout d'un constructeur public
+    public GestionParcImmobilierGUI() {
+        frame = new JFrame("Gestion de parc immobilier");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 500);
         frame.setLocationRelativeTo(null);
@@ -49,6 +52,10 @@ public class GestionParcImmobilierGUI {
         panel.add(transactionsButton, gbc);
 
         frame.add(panel);
-        frame.setVisible(true);
+        frame.setVisible(true); // ✅ S'assurer que la fenêtre s'affiche bien
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(GestionParcImmobilierGUI::new); // ✅ Assurer l'affichage via EDT
     }
 }
