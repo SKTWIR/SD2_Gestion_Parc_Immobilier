@@ -3,6 +3,8 @@ package com.immobilier.gui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -15,12 +17,15 @@ public class FormulaireAjoutBiens {
 
         JPanel panel = new JPanel(new GridLayout(7, 2, 5, 5));
         String[] types = {"Terrain", "Maison", "Appartement"};
+        
+        // Liste déroulante pour le Code Propriétaire
+        JComboBox<String> codeProprietaireComboBox = new JComboBox<>(loadProprietaireCodes("proprietaires.csv"));
+        JComboBox<String> codeClientComboBox = new JComboBox<>(loadClientCodes("clients.csv"));
+        
         JComboBox<String> typeComboBox = new JComboBox<>(types);
         JTextField superficieField = new JTextField();
         JTextField prixField = new JTextField();
         JTextField localisationField = new JTextField();
-        JTextField codeProprietaireField = new JTextField();
-        JTextField codeClientField = new JTextField();
 
         panel.add(new JLabel("Type:"));
         panel.add(typeComboBox);
@@ -31,16 +36,16 @@ public class FormulaireAjoutBiens {
         panel.add(new JLabel("Localisation:"));
         panel.add(localisationField);
         panel.add(new JLabel("Code Propriétaire:"));
-        panel.add(codeProprietaireField);
+        panel.add(codeProprietaireComboBox);
         panel.add(new JLabel("Code Client:"));
-        panel.add(codeClientField);
+        panel.add(codeClientComboBox);
 
         JButton enregistrerButton = new JButton("Enregistrer");
         enregistrerButton.addActionListener((ActionEvent e) -> {
             try {
                 String codeBien = ListeBiensGUI.generateUniqueCode("biens.csv");
                 try (FileWriter writer = new FileWriter("biens.csv", true)) {
-                    String newEntry = String.format("%s,%s,%s,%s,%s,%s,%s\n", codeBien, typeComboBox.getSelectedItem().toString(), superficieField.getText(), prixField.getText(), localisationField.getText(), codeProprietaireField.getText(), codeClientField.getText());
+                    String newEntry = String.format("%s,%s,%s,%s,%s,%s,%s\n", codeBien, typeComboBox.getSelectedItem().toString(), superficieField.getText(), prixField.getText(), localisationField.getText(), codeProprietaireComboBox.getSelectedItem().toString(), codeClientComboBox.getSelectedItem().toString());
                     writer.write(newEntry);
                     JOptionPane.showMessageDialog(frame, "Enregistrement réussi avec le code : " + codeBien);
                     frame.dispose();
@@ -54,5 +59,37 @@ public class FormulaireAjoutBiens {
         panel.add(enregistrerButton);
         frame.add(panel);
         frame.setVisible(true);
+    }
+    
+    private String[] loadProprietaireCodes(String filePath) {
+        java.util.List<String> codes = new java.util.ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",", -1);
+                if (values.length > 0) {
+                    codes.add(values[0].trim());
+                }
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Erreur lors de la lecture des codes propriétaires : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+        return codes.toArray(new String[0]);
+    }
+    
+    private String[] loadClientCodes(String filePath) {
+        java.util.List<String> codes = new java.util.ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",", -1);
+                if (values.length > 0) {
+                    codes.add(values[0].trim());
+                }
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Erreur lors de la lecture des codes propriétaires : " + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+        return codes.toArray(new String[0]);
     }
 }
